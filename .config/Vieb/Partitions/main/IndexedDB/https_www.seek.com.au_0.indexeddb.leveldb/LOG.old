@@ -1,0 +1,6 @@
+2024/01/29-09:38:22.024 b8d Creating DB /home/nephrihtos/.config/Vieb/Partitions/main/IndexedDB/https_www.seek.com.au_0.indexeddb.leveldb since it was missing.
+2024/01/29-09:38:22.033 b8d Reusing MANIFEST /home/nephrihtos/.config/Vieb/Partitions/main/IndexedDB/https_www.seek.com.au_0.indexeddb.leveldb/MANIFEST-000001
+2024/01/29-09:38:32.701 b8d Level-0 table #5: started
+2024/01/29-09:38:32.704 b8d Level-0 table #5: 1449 bytes OK
+2024/01/29-09:38:32.709 b8d Delete type=0 #3
+2024/01/29-09:38:32.709 b8d Manual compaction at level-0 from (begin) .. (end); will stop at (end)

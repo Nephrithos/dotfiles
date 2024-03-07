@@ -1,0 +1,6 @@
+2024/01/31-15:51:31.869 1d05 Reusing MANIFEST /home/nephrihtos/.config/Vieb/Partitions/main/Session Storage/MANIFEST-000001
+2024/01/31-15:51:31.869 1d05 Recovering log #197
+2024/01/31-15:51:31.869 1d05 Reusing old log /home/nephrihtos/.config/Vieb/Partitions/main/Session Storage/000197.log 
+2024/01/31-15:58:42.973 1d05 Level-0 table #201: started
+2024/01/31-15:58:42.983 1d05 Level-0 table #201: 76876 bytes OK
+2024/01/31-15:58:42.988 1d05 Delete type=0 #197
