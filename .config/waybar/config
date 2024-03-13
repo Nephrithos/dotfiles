@@ -49,7 +49,7 @@
         "return-type": "json",
         "exec": "~/.config/waybar/scripts/update.sh",      // # of updates and tooltip details
         "restart-interval": 60,                     // every minute
-        "on-click": "kitty -e paru -Sua", // update system
+        "on-click": "kitty -e yay", // update system
         "tooltip": false
     },
    "custom/weather" : {
