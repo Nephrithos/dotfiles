@@ -1,13 +1,12 @@
 return {
 	{
 		"kdheepak/lazygit.nvim",
-		keys = {
-			{
-				";c",
-				":LazyGit<Return>",
-				silent = true,
-				noremap = true,
-			},
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
 		},
 		-- optional for floating window border decoration
 		dependencies = {
