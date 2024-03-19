@@ -94,7 +94,8 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nano'
 fi
-
+export EDITOR='nvim'
+export VISUAL='nvim'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
