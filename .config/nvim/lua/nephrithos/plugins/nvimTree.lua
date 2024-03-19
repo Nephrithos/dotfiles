@@ -14,8 +14,6 @@ return {
 
 		-- configure nvim-tree
 		nvimtree.setup({
-			respect_buf_cwd = true,
-			reload_on_bufenter = false,
 			view = {
 				width = 35,
 				relativenumber = true,
@@ -49,11 +47,6 @@ return {
 			},
 			git = {
 				ignore = false,
-			},
-			update_focused_file = {
-				enable = true,
-				update_root = true,
-				ignore_list = {},
 			},
 		})
 
