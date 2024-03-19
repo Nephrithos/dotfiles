@@ -15,4 +15,4 @@ keymap.set("n", "<Leader>q", ":bd<Return>", opts)
 keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
 
 -- LazyGit
-keymap.set("n", "<leader>lg", ":LazyGit<CR>", opts)
+keymap.set("n", "<leader>lg", ":Neogit cwd=", opts)
