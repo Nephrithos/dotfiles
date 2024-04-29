@@ -1,6 +1,0 @@
-2024/01/29-07:54:09.378 b8b Reusing MANIFEST /home/nephrihtos/.config/Vieb/Partitions/main/IndexedDB/https_abode.jarrodsmith.website_0.indexeddb.leveldb/MANIFEST-000001
-2024/01/29-07:54:09.378 b8b Recovering log #3
-2024/01/29-07:54:09.378 b8b Reusing old log /home/nephrihtos/.config/Vieb/Partitions/main/IndexedDB/https_abode.jarrodsmith.website_0.indexeddb.leveldb/000003.log 
-2024/01/29-08:06:41.234 b9c Level-0 table #5: started
-2024/01/29-08:06:41.251 b9c Level-0 table #5: 1483708 bytes OK
-2024/01/29-08:06:41.257 b9c Delete type=0 #3

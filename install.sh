@@ -294,7 +294,7 @@ else
     echo "wl-clipboard FAILED TO INSTALL!!!" >> $log_file
 fi
 
-paru -S --noconfirm --removemake --needed wl-roots
+paru -S --noconfirm --removemake --needed wlroots
 if type -p wl-roots > /dev/null; then
     echo "wl-roots Installed" >> $log_file
 else

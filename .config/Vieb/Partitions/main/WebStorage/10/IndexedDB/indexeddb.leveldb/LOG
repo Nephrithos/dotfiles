@@ -1,6 +1,0 @@
-2024/01/29-13:06:24.991 b8b Creating DB /home/nephrihtos/.config/Vieb/Partitions/main/WebStorage/10/IndexedDB/indexeddb.leveldb since it was missing.
-2024/01/29-13:06:25.000 b8b Reusing MANIFEST /home/nephrihtos/.config/Vieb/Partitions/main/WebStorage/10/IndexedDB/indexeddb.leveldb/MANIFEST-000001
-2024/01/29-13:07:04.859 b8d Level-0 table #5: started
-2024/01/29-13:07:04.862 b8d Level-0 table #5: 7934 bytes OK
-2024/01/29-13:07:04.867 b8d Delete type=0 #3
-2024/01/29-13:07:04.868 b8d Manual compaction at level-0 from (begin) .. (end); will stop at (end)
