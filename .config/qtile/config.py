@@ -191,18 +191,22 @@ screens = [
                     background='#1C00ff00',
                 ),
                 widget.CheckUpdates(
-                    distro='arch',
-                    no_update_string='None',
+                    distro='Arch_paru',
+                    no_update_string='0',
                     update_interval=60,
                     colour_no_updates='#008000',
                     colour_have_updates='#ff5733',
-                    fmt='󰚰 {updates}', 
+                    display_format='󰚰 {updates}',
+                    padding=5
                 ),
                 widget.Net(
                     font = 'RobotoMono Nerd Font Bold',
                     fontsize = 12,
                     format = '{down} ↓↑ {up}',
                     interface = 'wlan0',
+                    scroll = True,
+                    scroll_fixed_width = True,
+                    width = 150,
                     decorations = [
                         RectDecoration (
                             padding_y = 3,
