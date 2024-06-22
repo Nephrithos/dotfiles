@@ -1,6 +1,5 @@
 return {
 	"akinsho/bufferline.nvim",
-	tag = "v4.5.2",
 	version = "*",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
