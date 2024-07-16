@@ -24,37 +24,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import os
+import re
+import socket
 import subprocess
-from libqtile import bar,extension, hook, layout, qtile, widget
+from typing import List
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+from libqtile.utils import guess_terminal
 from qtile_extras import widget
-from qtile_extras.widget.decorations import BorderDecoration
 from qtile_extras.widget.decorations import RectDecoration
 
-# Startup Applications
+
 @hook.subscribe.startup_once
 def autostart():
-    if qtile.core.name == "x11":
-        autostartscript = "~/.config/qtile/scripts/x11-autostart.sh"
-    elif qtile.core.name == "wayland":
-        autostartscript = "~/.config/qtile/scripts/wayland-autostart.sh"
-
-    home = os.path.expanduser(autostartscript)
-    subprocess.Popen([home])
-
-if qtile.core.name == "wayland":
-    os.environ["XDG_SESSION_DESKTOP"] = "qtile:wlroots"
-    os.environ["XDG_CURRENT_DESKTOP"] = "qtile:wlroots"
+        processes = [
+            ['picom', '-b'],
+            ['teams'],
+            ['teamviewer'],
+            ['sh', '/home/nephrithos/.config/qtile/autostart.sh'],
+        ]
+        for p in processes:
+            subprocess.Popen(p)
 
 
 mod = "mod4"
 terminal = "kitty"
-browser = "firefox"
-rofi = os.path.expanduser("~/.config/rofi/launchers/type-6/launcher.sh")
-ranger = "kitty -- ranger"
-nvim = "kitty -- nvim"
-rust = "rustdesk"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -77,7 +72,7 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod, "control"], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -89,26 +84,41 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "b", lazy.spawn(browser), desc="Launch firefox"),
-    Key([mod], "e", lazy.spawn(ranger, shell=True), desc="Launch ranger"),
-    Key([mod], "n", lazy.spawn(nvim, shell=True), desc="Launch neovim"),
-    Key([mod], "v", lazy.spawn(rust), desc="Launch rustdesk"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], 'space', lazy.window.toggle_floating(), desc="toggle floating window on/off"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
-    Key(
-        [mod],
-        "f",
-        lazy.window.toggle_fullscreen(),
-        desc="Toggle fullscreen on the focused window",
-    ),
-    Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawn(rofi, shell=True), desc="Spawn rofi launcher"),
+    Key([mod], "r", lazy.spawn('/home/nephrithos/.config/rofi/launchers/type-6/launcher.sh'), desc="Spawn rofi"),
+    # Spawn Firefox
+    Key([mod],"b", lazy.spawn('firefox'), desc="Spawn firefox"),
+
+    # Spawn Teams
+    Key([mod],"t", lazy.spawn('teams-for-linux'), desc="Spawn teams"),
+    # Spawn Teamviewer
+    Key([mod],"v", lazy.spawn('teamviewer'), desc="Spawn TeamViewer"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-"), desc="Lower Volume by 5%"),
+
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+"), desc="Raise Volume by 5%"),
+
+    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle"), desc="Mute/Unmute Volume"),
+
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Play/Pause player"),
+
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Skip to next"),
+
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Skip to previous"),
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [
+    Group("1", matches=[Match(wm_class=["teamviewer"])]),
+    Group("2", matches=[Match(wm_class=["firefox"])]),
+    Group("3", matches=[Match(wm_class=["microsoft teams - preview"])]),
+    Group("4", matches=[Match(wm_class=[terminal])]),
+
+]
+## groups = [Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend(
@@ -135,8 +145,14 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    layout.Columns(
+        border_focus_stack = ["#d75f5f", "#8f3d3d"],
+        border_width = 0,
+        margin = 8
+    ),
+    layout.Max(
+            margin = 8
+        ),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -150,224 +166,157 @@ layouts = [
     # layout.Zoomy(),
 ]
 
+##### COLORS #####
+colors = [["#2e3440", "#2e3440"],  # panel background
+          ["#434758", "#434758"],  # background for current screen tab
+          ["#ffffff", "#ffffff"],  # font color for group names
+          ["#ff5555", "#ff5555"],  # border line color for current tab
+          ["#8d62a9", "#8d62a9"],  # border line color for other tab and odd widgets
+          ["444444", "444444"],  # color for the even widgets
+          ["#e1acff", "#e1acff"]]  # window name
+background="444444"
+
+##### PROMPT #####
+prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+
+##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
-    font="RobotoMono Nerd Font",
-    fontsize=12,
-    padding=3,
+    font="FiraCode NF",
+    fontsize=14,
+    padding=2,
+    background='#ff0000.0', opacity=1,
+    theme_path="~/.local/share/icons/Adwaita/16x16/status"
 )
+
+decoration_group = {
+    "decorations": [
+        RectDecoration(
+            clip = True,
+            colour="#004040", 
+            radius=10, 
+            filled=True, 
+            group=True)
+    ],
+    "padding": 10,
+}
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.Clock(
-                    format=" %m-%d %a %I:%M %p "
-                ),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.GroupBox(
-                    font = "RobotoMono Nerd Font Bold",
-                    fontsize = 12,
-                    margin_y = 2,
-                    margin_x = 3,
-                    padding_y = 2,
-                    padding_x = 3,
-                    borderwidth = 0,
-                    disable_drag = True,
-                    rounded = False,
-                    highlight_method = "text",
-                ),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.WindowName(),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.Systray(),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.CheckUpdates(
-                    distro='Arch_paru',
-                    no_update_string='0',
-                    update_interval=60,
-                    colour_no_updates='#008000',
-                    colour_have_updates='#ff5733',
-                    display_format='󰚰 {updates}',
-                    padding=5
-                ),
-                widget.Net(
-                    font = 'RobotoMono Nerd Font Bold',
-                    fontsize = 12,
-                    format = '{down} ↓↑ {up}',
-                    interface = 'wlan0',
-                    scroll = True,
-                    scroll_fixed_width = True,
-                    width = 150,
-                    decorations = [
-                        RectDecoration (
-                            padding_y = 3,
-                            radius = 2,
-                            filled = True
-                        ),
-                    ],
-                ),
-                widget.Volume(
-                    emoji=True,
-                    fmt='{icon} {volume}%',
-                    update_interval=0.2,
-                    volume_app='pamixer',
-                    volume_down_command='pamixer -d 5',
-                    volume_up_command='pamixer -i 5',
-                )
+##### WIDGETS #####
 
-            ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+
+def init_widgets_list():
+    widgets_list = [
+        widget.GroupBox(
+            # font="Ubuntu Bold",
+            fontsize=12,
+            margin_y=3,
+            margin_x=0,
+            padding_y=5,
+            padding_x=10,
+            borderwidth=3,
+            active=colors[2],
+            inactive=colors[2],
+            rounded=False,
+            highlight_color=colors[1],
+            highlight_method="line",
+            this_current_screen_border=colors[3],
+            this_screen_border=colors[4],
+            other_current_screen_border=colors[0],
+            other_screen_border=colors[0],
+            foreground=colors[2],
+            background=colors[0],
+            **decoration_group
         ),
-        wallpaper=os.path.expanduser("~/.dotfiles/.config/hypr/wallapapers/kakshi.jpeg"),
-        wallpaper_mode='fill',
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.Clock(
-                    format=" %m-%d %a %I:%M %p "
-                ),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.GroupBox(
-                    font = "RobotoMono Nerd Font Bold",
-                    fontsize = 12,
-                    margin_y = 2,
-                    margin_x = 3,
-                    padding_y = 2,
-                    padding_x = 3,
-                    borderwidth = 0,
-                    disable_drag = True,
-                    rounded = False,
-                    highlight_method = "text",
-                ),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.WindowName(),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.CheckUpdates(
-                    distro='arch',
-                    no_update_string='None',
-                    update_interval=60,
-                    colour_no_updates='#008000',
-                    colour_have_updates='#ff5733',
-                    fmt='󰚰 {updates}', 
-                ),
-                widget.Net(
-                    font = 'RobotoMono Nerd Font Bold',
-                    fontsize = 12,
-                    format = '{down} ↓↑ {up}',
-                    interface = 'wlan0',
-                    decorations = [
-                        RectDecoration (
-                            padding_y = 3,
-                            radius = 2,
-                            filled = True
-                        ),
-                    ],
-                ),
-                widget.Volume(
-                    emoji=True,
-                    fmt='{icon} {volume}%',
-                    update_interval=0.2,
-                    volume_app='pamixer',
-                    volume_down_command='pamixer -d 5',
-                    volume_up_command='pamixer -i 5',
-                )
-
-
-            ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        widget.OpenWeather(
+            app_key='65eb1b03cab1bdc06fdf5f037f879d04',
+            cityid='2165828',
+            update_interval=10,
+            fontsize=14,
+            metric=False,
+            background=colors[0],
+            foreground=colors[2],
+            format=("{icon} {main_temp} "
+                    "°{units_temperature}")
         ),
-        wallpaper=os.path.expanduser("~/.dotfiles/.config/hypr/wallapapers/kurama-and-naruto-bo-2560x1440.jpg"),
-        wallpaper_mode='fill',
-    ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.Clock(
-                    format=" %m-%d %a %I:%M %p "
-                ),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.GroupBox(
-                    font = "RobotoMono Nerd Font Bold",
-                    fontsize = 12,
-                    margin_y = 2,
-                    margin_x = 3,
-                    padding_y = 2,
-                    padding_x = 3,
-                    borderwidth = 0,
-                    disable_drag = True,
-                    rounded = False,
-                    highlight_method = "text",
-                ),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.WindowName(),
-                widget.Spacer(
-                    background='#1C00ff00',
-                ),
-                widget.CheckUpdates(
-                    distro='arch',
-                    no_update_string='None',
-                    update_interval=60,
-                    colour_no_updates='#008000',
-                    colour_have_updates='#ff5733',
-                    fmt='󰚰 {updates}', 
-                ),
-                widget.Net(
-                    font = 'RobotoMono Nerd Font Bold',
-                    fontsize = 12,
-                    format = '{down} ↓↑ {up}',
-                    interface = 'wlan0',
-                    decorations = [
-                        RectDecoration (
-                            padding_y = 3,
-                            radius = 2,
-                            filled = True
-                        ),
-                    ],
-                ),
-                widget.Volume(
-                    emoji=True,
-                    fmt='{icon} {volume}%',
-                    update_interval=0.2,
-                    volume_app='pamixer',
-                    volume_down_command='pamixer -d 5',
-                    volume_up_command='pamixer -i 5',
-                )
-
-            ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+        widget.WindowName(
+            font="FiraCode NF",
+            foreground=colors[2],
+            background=colors[0],
+            padding=15
         ),
-                # Set wallpaper
-        wallpaper=os.path.expanduser("~/.dotfiles/.config/hypr/wallapapers/1331678.png"),
-        wallpaper_mode='fill',
-    ),
+        widget.CheckUpdates(
+            update_interval=60,
+            distro="Arch_paru",
+            display_format="Updates: {updates} ",
+            no_update_string='No updates',
+            foreground=colors[5],
+            colour_have_updates=colors[2],
+            colour_no_updates=colors[2],
+            mouse_callbacks={'Button1': lambda: lazy.spawn(terminal + 'paru')},
+            padding=5,
+            background=colors[0],
+        ),
+        widget.StatusNotifier(
+            background=colors[0],
+            foreground=colors[2],
+            **decoration_group
+        ),
+        widget.CurrentLayoutIcon(
+            custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
+            background="#818589",
+            scale=0.7,
+            **decoration_group
+          
+        ),
+        widget.CurrentLayout(
+            foreground=colors[2],
+            background="#818589",
+            **decoration_group
+         
+        ),
+        widget.CapsNumLockIndicator(
+            foreground=colors[2],
+            background="#818589",
+            **decoration_group
+        ),
+        widget.Clock(
+            format="%A %d %B  [ %H:%M ]",
+            **decoration_group
+        ),
 
-]
+    ]
+    return widgets_list
+
+# SCREENS ##### (TRIPLE MONITOR SETUP)
+
+
+def init_widgets_screen1():
+    widgets_screen1 = init_widgets_list()
+    del widgets_screen1[4]   # Slicing removes unwanted widgets on Monitors 1,3
+    return widgets_screen1
+
+
+def init_widgets_screen2():
+    widgets_screen2 = init_widgets_list()
+    # Monitor 2 will display all widgets in widgets_list
+    return widgets_screen2
+
+
+def init_screens():
+    return [
+        Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26),wallpaper='~/.config/qtile/wallpaperflare.com_wallpaper.jpg'),
+        Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26),wallpaper='~/.config/qtile/wallpaperflare.com_wallpaper.jpg'),
+        Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26),wallpaper='~/.config/qtile/city_scapes_1080x1920.jpg')
+    ]
+
+
+if __name__ in ["config", "__main__"]:
+    screens = init_screens()
+    widgets_list = init_widgets_list()
+    widgets_screen1 = init_widgets_screen1()
+    widgets_screen2 = init_widgets_screen2()
+
+
 
 # Drag floating layouts.
 mouse = [
@@ -380,7 +329,6 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
-floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
@@ -396,7 +344,9 @@ floating_layout = layout.Floating(
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
-reconfigure_screens = False 
+reconfigure_screens = True
+
+
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
