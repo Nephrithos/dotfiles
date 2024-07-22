@@ -294,11 +294,11 @@ else
     echo "wl-clipboard FAILED TO INSTALL!!!" >> $log_file
 fi
 
-paru -S --noconfirm --removemake --needed xdg-desktop-portal-hyprland
-if type -p xdg-desktop-portal-hyprland > /dev/null; then
-    echo "xdg-desktop-portal-hyprland Installed" >> $log_file
+paru -S --noconfirm --removemake --needed xdg-desktop-portal-hyprland-git
+if type -p xdg-desktop-portal-hyprland-git > /dev/null; then
+    echo "xdg-desktop-portal-hyprland-git Installed" >> $log_file
 else
-    echo "xdg-desktop-portal-hyprland FAILED TO INSTALL!!!" >> $log_file
+    echo "xdg-desktop-portal-hyprland-git FAILED TO INSTALL!!!" >> $log_file
 fi
 
 paru -S --noconfirm --removemake --needed xorg-xwayland
