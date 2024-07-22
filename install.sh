@@ -336,6 +336,13 @@ else
     echo "waybar FAILED TO INSTALL!!!" >> $log_file
 fi
 
+paru -S --noconfirm --removemake --needed walker
+if type -p walker > /dev/null; then
+    echo "walker Installed" >> $log_file
+else
+    echo "walker FAILED TO INSTALL!!!" >> $log_file
+fi
+
 echo -e "\n====== Summary ======\n"
 cat $log_file
 echo
