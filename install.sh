@@ -294,13 +294,6 @@ else
     echo "wl-clipboard FAILED TO INSTALL!!!" >> $log_file
 fi
 
-paru -S --noconfirm --removemake --needed wlroots
-if type -p wl-roots > /dev/null; then
-    echo "wl-roots Installed" >> $log_file
-else
-    echo "wl-roots FAILED TO INSTALL!!!" >> $log_file
-fi
-
 paru -S --noconfirm --removemake --needed xdg-desktop-portal-hyprland
 if type -p xdg-desktop-portal-hyprland > /dev/null; then
     echo "xdg-desktop-portal-hyprland Installed" >> $log_file
