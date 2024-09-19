@@ -58,7 +58,7 @@ WEATHER_CODES = {
 data = {}
 
 
-weather = requests.get("https://wttr.in/gatton?format=j1").json()
+weather = requests.get("https://wttr.in/Ipswich,Queensland?format=j1").json()
 
 
 def format_time(time):
@@ -86,17 +86,18 @@ def format_chances(hour):
         if int(hour[event]) > 0:
             conditions.append(chances[event]+" "+hour[event]+"%")
     return ", ".join(conditions)
-
+location = str(weather['nearest_area'][0]['areaName'][0]['value'])
 tempint = int(weather['current_condition'][0]['FeelsLikeF'])
 extrachar = ''
 if tempint > 0 and tempint < 10:
     extrachar = '+'
 
 
-data['text'] = ' '+WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
+data['text'] = ' '+location+' '+WEATHER_CODES[weather['current_condition'][0]['weatherCode']] + \
     " "+extrachar+weather['current_condition'][0]['FeelsLikeF']+"°"
 
-data['tooltip'] = f"<b>{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_F']}°</b>\n"
+data['tooltip'] = f'<b>Location: {weather['nearest_area'][0]['areaName'][0]['value']}</b>\n'
+data['tooltip'] += f"{weather['current_condition'][0]['weatherDesc'][0]['value']} {weather['current_condition'][0]['temp_F']}°\n"
 data['tooltip'] += f"Feels like: {weather['current_condition'][0]['FeelsLikeF']}°\n"
 data['tooltip'] += f"Wind: {weather['current_condition'][0]['windspeedKmph']}Km/h\n"
 data['tooltip'] += f"Humidity: {weather['current_condition'][0]['humidity']}%\n"

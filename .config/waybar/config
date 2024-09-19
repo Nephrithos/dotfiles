@@ -31,8 +31,8 @@
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "󰇰",
+            "1": "󰇰",
+            "2": "",
             "3": "󰊻",
             "4": "󰔀",
             "5": "",
@@ -49,7 +49,7 @@
         "return-type": "json",
         "exec": "~/.config/waybar/scripts/update.sh",      // # of updates and tooltip details
         "restart-interval": 60,                     // every minute
-        "on-click": "kitty -e paru", // update system
+        "on-click": "kitty -e yay", // update system
         "tooltip": false
     },
    "custom/weather" : {
@@ -76,6 +76,7 @@
         "format": " {:%H:%M %m/%d }",
         "tooltip-format": "<big>{:%Y
         %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "timezones" : ["Australia/Brisbane"],
         "calendar": {
                     "mode"          : "year",
                     "mode-mon-col"  : 3,

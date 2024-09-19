@@ -10,11 +10,11 @@ threshhold_red=99
 # Calculate available updates pacman and aur (with trizen)
 # ----------------------------------------------------- 
 
-if ! updates_arch=$(checkupdates 2> /dev/null | wc -l ); then
+if ! updates_arch=$(checkupdates > /dev/null | wc -l ); then
     updates_arch=0
 fi
 
-if ! updates_aur=$(paru -Qua --quiet | wc -l); then
+if ! updates_aur=$(yay -Qua --quiet | wc -l); then
     updates_aur=0
 fi
 

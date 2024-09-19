@@ -9,10 +9,10 @@ return {
 		},
 		config = function()
 			-- import nvim-treesitter plugin
-			local treesitter = require("nvim-treesitter.configs")
+			local configs = require("nvim-treesitter.configs")
 
 			-- configure treesitter
-			treesitter.setup({ -- enable syntax highlighting
+			configs.setup({ -- enable syntax highlighting
 				highlight = {
 					enable = true,
 				},
@@ -26,20 +26,14 @@ return {
 				ensure_installed = {
 					"json",
 					"javascript",
-					"typescript",
-					"tsx",
 					"yaml",
 					"html",
 					"css",
-					"prisma",
 					"markdown",
 					"markdown_inline",
-					"svelte",
-					"graphql",
 					"bash",
 					"lua",
 					"vim",
-					"dockerfile",
 					"gitignore",
 					"query",
 					"python",
@@ -62,6 +56,22 @@ return {
 					enable_close = true, -- Auto close tags
 					enable_rename = true, -- Auto rename pairs of tags
 					enable_close_on_slash = false, -- Auto close on trailing </
+				},
+				sync_install = true,
+				ensure_installed = {
+					"json",
+					"javascript",
+					"yaml",
+					"html",
+					"css",
+					"markdown",
+					"markdown_inline",
+					"bash",
+					"lua",
+					"vim",
+					"gitignore",
+					"query",
+					"python",
 				},
 			})
 		end,
