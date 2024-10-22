@@ -1,10 +1,11 @@
-lastupdatecheck: 0
+lastupdatecheck: 1724308839
 recentrepos:
     - /home/nephrithos/.dotfiles
     - /home/nephrithos/LabAssist
 startuppopupversion: 5
-lastversion: 0.43.1
-customcommandshistory: []
+lastversion: 0.44.1
+customcommandshistory:
+    - q
 hidecommandlog: false
 ignorewhitespaceindiffview: false
 diffcontextsize: 3

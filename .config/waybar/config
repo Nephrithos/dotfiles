@@ -15,9 +15,8 @@
     "modules-right": [
         "tray",
         "custom/updates",
-        "custom/language",
+        "keyboard-state",
         "network",
-        "backlight",
         "pulseaudio",
         "pulseaudio#microphone"
     ],
@@ -51,6 +50,15 @@
         "restart-interval": 60,                     // every minute
         "on-click": "kitty -e paru", // update system
         "tooltip": false
+    },
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}  ",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
     },
    "custom/weather" : {
         "tooltip" : true,
@@ -91,14 +99,6 @@
                               "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
                               }
                     },
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", ""],
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
-        "min-length": 6
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
