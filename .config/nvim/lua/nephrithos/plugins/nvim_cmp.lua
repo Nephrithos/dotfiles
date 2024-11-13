@@ -1,8 +1,7 @@
 local cmp = require("cmp")
 return {
 	"hrsh7th/nvim-cmp",
-	keys = { ":", "/", "?" },
-	event = "InsertEnter",
+	--keys = { ":", "/", "?" },
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
@@ -54,27 +53,6 @@ return {
 					ellipsis_char = "...",
 				}),
 			},
-		})
-		-- `/` cmdline setup.
-		cmp.setup.cmdline("/", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = {
-				{ name = "buffer" },
-			},
-		})
-		-- `:` cmdline setup.
-		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				{ name = "path" },
-			}, {
-				{
-					name = "cmdline",
-					option = {
-						ignore_cmds = { "Man", "!" },
-					},
-				},
-			}),
 		})
 	end,
 }

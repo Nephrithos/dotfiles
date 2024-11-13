@@ -51,3 +51,6 @@ Map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find fil
 Map("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 Map("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 Map("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+
+-- space before paste
+Map("n", "<leader>p", "li<space><esc>p")

@@ -1,6 +1,4 @@
 return {
-	lazy = true,
-	event = { "BufReadPre", "BufNewFile" },
 	"mfussenegger/nvim-dap",
 
 	dependencies = {

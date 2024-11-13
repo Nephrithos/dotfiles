@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPre", "BufNewFile" },
 		build = ":TSUpdate",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
@@ -22,6 +21,7 @@ return {
 				autotag = {
 					enable = true,
 				},
+				sync_install = true,
 				-- ensure these language parsers are installed
 				ensure_installed = {
 					"json",
