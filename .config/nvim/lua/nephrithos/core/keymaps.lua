@@ -10,6 +10,7 @@ vim.g.mapleader = " "
 Map("n", "<leader>pv", vim.cmd.Ex)
 Map("n", "<leader>nb", ":bnext<CR>")
 Map("n", "<leader>pb", ":bprevious<CR>")
+Map("n", "<leader>fb", ":bfirst<CR>")
 
 -- better movments
 Map("n", "<C-h>", "<C-w>h")

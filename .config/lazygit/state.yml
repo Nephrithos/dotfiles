@@ -2,11 +2,13 @@ lastupdatecheck: 1724308839
 recentrepos:
     - /home/nephrithos/.dotfiles
     - /home/nephrithos/LabAssist
+    - /home/nephrithos/LabAssistold
     - /home/nephrithos/neovim
 startuppopupversion: 5
 lastversion: 0.44.1
 customcommandshistory:
     - q
+    - qa
 hidecommandlog: false
 ignorewhitespaceindiffview: false
 diffcontextsize: 3

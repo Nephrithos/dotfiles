@@ -28,6 +28,7 @@ return {
 					"javascript",
 					"yaml",
 					"html",
+					"htmldjango",
 					"css",
 					"markdown",
 					"markdown_inline",
@@ -55,7 +56,7 @@ return {
 				opts = {
 					enable_close = true, -- Auto close tags
 					enable_rename = true, -- Auto rename pairs of tags
-					enable_close_on_slash = false, -- Auto close on trailing </
+					enable_close_on_slash = true, -- Auto close on trailing </
 				},
 				sync_install = true,
 				ensure_installed = {
@@ -63,6 +64,7 @@ return {
 					"javascript",
 					"yaml",
 					"html",
+					"htmldjango",
 					"css",
 					"markdown",
 					"markdown_inline",
