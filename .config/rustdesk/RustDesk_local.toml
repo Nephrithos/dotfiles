@@ -1,0 +1,17 @@
+remote_id = '322337245'
+kb_layout_type = ''
+size = [
+    0,
+    0,
+    0,
+    0,
+]
+fav = []
+
+[options]
+remote-menubar-drag-left = '0.0'
+remote-menubar-drag-right = '1.0'
+theme = 'dark'
+
+[ui_flutter]
+peer-sorting = 'Remote ID'
