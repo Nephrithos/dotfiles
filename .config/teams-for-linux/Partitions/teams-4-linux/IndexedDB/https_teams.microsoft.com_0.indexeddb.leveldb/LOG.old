@@ -1,5 +1,0 @@
-2025/02/13-14:46:13.091 5c1 Reusing MANIFEST /home/nephrithos/.config/teams-for-linux/Partitions/teams-4-linux/IndexedDB/https_teams.microsoft.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/02/13-14:46:13.091 5c1 Recovering log #28
-2025/02/13-14:46:13.098 5c1 Reusing old log /home/nephrithos/.config/teams-for-linux/Partitions/teams-4-linux/IndexedDB/https_teams.microsoft.com_0.indexeddb.leveldb/000028.log 
-2025/02/13-14:46:39.321 5c6 Manual compaction at level-0 from '\x00\\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00]\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/02/13-14:46:39.325 61c Manual compaction at level-0 from '\x00]\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00^\x00\x00\x00' @ 0 : 0; will stop at (end)
