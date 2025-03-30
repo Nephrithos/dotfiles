@@ -38,7 +38,7 @@ def init_screens():
 screens = init_screens()
 widgets_list = init_widgets_list()
 widgets_screen1 = init_widgets_screen1()
-widgets_screen2 = init_widgets_screen2()
+# widgets_screen2 = init_widgets_screen2()
 
 
 def window_to_prev_group(qtile):

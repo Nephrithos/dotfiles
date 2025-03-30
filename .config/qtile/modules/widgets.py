@@ -11,7 +11,7 @@ def init_widgets_list():
     widgets_list = [
         widget.Spacer(length=12),
         widget.Image(
-            filename="~/LabAssist/media/uploads/2025/03/26/nataLogo.png",
+            filename="~/.config/qtile/wallapapers/nephrithos.png",
             scale="False",
             mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(myTerm)},
         ),

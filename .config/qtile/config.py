@@ -1,10 +1,8 @@
 from modules.groups import groups
 from modules.layouts import layouts, floating_layout
 from modules.keys import *
-from modules.hooks import *
 from modules.screens import *
-
-print(groups)
+from modules.hooks import *
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list

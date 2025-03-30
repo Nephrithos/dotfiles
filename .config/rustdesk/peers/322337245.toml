@@ -105,15 +105,16 @@ view_only = false
 sync-init-clipboard = false
 
 [options]
-custom-fps = '30'
-codec-preference = 'auto'
-i444 = ''
 touch-mode = ''
-zoom-cursor = ''
-swap-left-right-mouse = ''
 alias = 'Sever Desktop'
+i444 = ''
+custom-fps = '30'
+swap-left-right-mouse = ''
+codec-preference = 'auto'
+zoom-cursor = ''
 
 [ui_flutter]
+wm_RemoteDesktop = '{"width":1258.0,"height":1382.0,"offsetWidth":2370.0,"offsetHeight":46.0,"isMaximized":false,"isFullscreen":false}'
 
 [info]
 username = 'SMITJ15'

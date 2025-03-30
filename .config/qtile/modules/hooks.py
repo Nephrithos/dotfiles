@@ -24,8 +24,8 @@ def killall():
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser("~")
-    subprocess.call([home + "/.config/qtile/autostart.sh"])
     subprocess.call([home + "/.config/qtile/default.sh"])
+    subprocess.call([home + "/.config/qtile/autostart.sh"])
 
 
 @hook.subscribe.startup

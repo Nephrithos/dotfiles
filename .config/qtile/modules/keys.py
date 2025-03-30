@@ -85,6 +85,7 @@ keys = [
     Key([mod], "e", lazy.spawn("thunar"), desc="Launch file manager"),
     Key([mod], "y", lazy.spawn("mattermost-desktop"), desc="Launch Mattermost"),
     Key([mod], "t", lazy.spawn("teams-for-linux"), desc="Launch MS Team"),
+    Key([mod], "v", lazy.spawn("rustdesk"), desc="Launch RustDesk"),
 ]
 
 # Drag floating layouts.

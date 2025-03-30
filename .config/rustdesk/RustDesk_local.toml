@@ -9,9 +9,11 @@ size = [
 fav = []
 
 [options]
-remote-menubar-drag-left = '0.0'
 remote-menubar-drag-right = '1.0'
+remote-menubar-drag-left = '0.0'
 theme = 'dark'
 
 [ui_flutter]
+wm_RemoteDesktop = '{"width":1258.0,"height":1382.0,"offsetWidth":2370.0,"offsetHeight":46.0,"isMaximized":false,"isFullscreen":false}'
 peer-sorting = 'Remote ID'
+wm_Main = '{"width":2538.0,"height":1382.0,"offsetWidth":1090.0,"offsetHeight":46.0,"isMaximized":false,"isFullscreen":false}'

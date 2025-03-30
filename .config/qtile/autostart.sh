@@ -6,10 +6,6 @@ run() {
   fi
 }
 
+run numlockx
 run nitrogen --restore
-run picom -b
-run lxpolkit
-run nm-applet
-run volumeicon
-run urxvtd -q -o -f
-run emacs --daemon
+xset s off -dpms
