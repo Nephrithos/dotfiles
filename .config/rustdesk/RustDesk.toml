@@ -1,4 +1,4 @@
-enc_id = '00774i/9E/PyyhO9GFJweLF65CYK/WpDZrkZM='
+enc_id = '000SuNoBfB/vOkX/QZ4K9jbyRy0rqzsCZQ3aw='
 password = ''
 salt = 'gtqwca'
 key_pair = [
@@ -106,5 +106,4 @@ key_pair = [
 key_confirmed = true
 
 [keys_confirmed]
-rs-ny = true
 rusty = true

@@ -2,10 +2,13 @@
   "menus.power.showLabel": true,
   "bar.customModules.updates.pollingInterval": 1440000,
   "bar.layouts": {
-    "*": {
+    "0": {
       "left": [
         "dashboard",
-        "workspaces"
+        "workspaces",
+        "ram",
+        "cpu",
+        "cputemp"
       ],
       "middle": [
         "windowtitle"
@@ -19,9 +22,19 @@
         "clock",
         "notifications"
       ]
+    },
+    "1": {
+      "left": [],
+      "middle": [],
+      "right": []
+    },
+    "2": {
+      "left": [],
+      "middle": [],
+      "right": []
     }
   },
-  "theme.bar.buttons.enableBorders": true,
+  "theme.bar.buttons.enableBorders": false,
   "menus.clock.time.military": true,
   "menus.clock.time.hideSeconds": true,
   "menus.clock.weather.location": "-27.62, 152.73",
@@ -424,5 +437,31 @@
   "theme.bar.buttons.modules.cava.background": "#3b4252",
   "theme.bar.buttons.modules.cava.icon_background": "#3b4252",
   "theme.bar.buttons.modules.cava.icon": "#8fbcbb",
-  "theme.bar.buttons.modules.cava.border": "#8fbcbb"
+  "theme.bar.buttons.modules.cava.border": "#8fbcbb",
+  "theme.bar.floating": true,
+  "theme.bar.border.location": "none",
+  "theme.bar.border.width": "0em",
+  "theme.bar.shadow": "0px 1px 2px 1px #16161e",
+  "bar.scrollSpeed": 3,
+  "bar.network.label": true,
+  "bar.network.truncation": true,
+  "theme.bar.buttons.network.enableBorder": false,
+  "bar.network.showWifiInfo": false,
+  "theme.bar.buttons.modules.ram.enableBorder": false,
+  "bar.customModules.cpuTemp.sensor": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon4/temp1_input",
+  "bar.customModules.cpuTemp.label": true,
+  "bar.customModules.cpuTemp.round": true,
+  "theme.bar.buttons.modules.cpuTemp.enableBorder": false,
+  "theme.bar.menus.monochrome": false,
+  "wallpaper.pywal": false,
+  "theme.bar.buttons.modules.microphone.border": "#8fbcbb",
+  "theme.bar.buttons.modules.microphone.text": "#8fbcbb",
+  "theme.bar.buttons.modules.microphone.background": "#3b4252",
+  "theme.bar.buttons.modules.microphone.icon": "#8fbcbb",
+  "theme.bar.buttons.modules.microphone.icon_background": "#3b4252",
+  "theme.bar.buttons.modules.cpuTemp.background": "#3b4252",
+  "theme.bar.buttons.modules.cpuTemp.icon_background": "#3b4252",
+  "theme.bar.buttons.modules.cpuTemp.text": "#88c0d0",
+  "theme.bar.buttons.modules.cpuTemp.icon": "#88c0d0",
+  "theme.bar.buttons.modules.cpuTemp.border": "#88c0d0"
 }

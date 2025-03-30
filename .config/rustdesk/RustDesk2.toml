@@ -6,7 +6,7 @@ trusted_devices = ''
 
 [options]
 allow-remote-config-modification = 'Y'
+local-ip-addr = '10.0.0.4'
 custom-rendezvous-server = 'rusty.jarrodsmith.website'
-local-ip-addr = '192.168.236.32'
 av1-test = 'Y'
 key = 'Oj1wE2Ia7j5C3uz3qg7R0MmeeNqgn4OGZsa4IXoVnhs='
