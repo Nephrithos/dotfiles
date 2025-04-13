@@ -1,2 +1,6 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+-- Initialize Core Settings
+require 'config.options'
+require 'config.keys'
+
+-- Pluggins
+require 'config.lazy'
