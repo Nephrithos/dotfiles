@@ -2,11 +2,12 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
 		"hrsh7th/nvim-cmp",
 		"hrsh7th/cmp-nvim-lsp",
-		"https://github.com/hrsh7th/cmp-buffer",
-		"https://github.com/hrsh7th/cmp-path",
-		"https://github.com/saadparwaiz1/cmp_luasnip",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"saadparwaiz1/cmp_luasnip",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
@@ -55,7 +56,7 @@ return {
 				opts.desc = "Go to previous diagnostic"
 				keymap.set("n", "[d", vim.diagnostic.jump, opts) -- jump to previous diagnostic in buffer
 
-				optssdesc = "Go to next diagnostic"
+				opts.desc = "Go to next diagnostic"
 				keymap.set("n", "]d", vim.diagnostic.jump, opts) -- jump to next diagnostic in buffer
 
 				opts.desc = "Show documentation for what is under cursor"
@@ -68,25 +69,25 @@ return {
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 		-- Change the Diagnostic symbols in the sign column (gutter)
-		local sign = function(opts)
-			vim.fn.sign_define(opts.name, {
-				texthl = opts.name,
-				text = opts.text,
-				numhl = "",
-			})
-		end
-
-		sign({ name = "DiagnosticSignError", text = "✘" })
-		sign({ name = "DiagnosticSignWarn", text = "▲" })
-		sign({ name = "DiagnosticSignHint", text = "⚑" })
-		sign({ name = "DiagnosticSignInfo", text = "" })
-
 		vim.diagnostic.config({
-			virtual_text = false,
+			virtual_text = {
+				source = "if_many",
+				prefix = "●",
+			},
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = "✘",
+					[vim.diagnostic.severity.WARN] = "▲",
+					[vim.diagnostic.severity.HINT] = "⚑",
+					[vim.diagnostic.severity.INFO] = "",
+				},
+			},
+			update_in_insert = true,
+			underline = true,
 			severity_sort = true,
 			float = {
 				border = "rounded",
-				source = "always",
+				source = "if_many",
 			},
 		})
 

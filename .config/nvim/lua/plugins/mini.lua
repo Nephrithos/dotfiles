@@ -13,7 +13,7 @@ return {
 			require("mini.hipatterns").setup()
 			require("mini.cursorword").setup()
 			--require("mini.tabline").setup()
-			require("mini.animate").setup()
+			--require("mini.animate").setup()
 			require("mini.map").setup()
 			require("mini.notify").setup()
 			require("mini.indentscope").setup()

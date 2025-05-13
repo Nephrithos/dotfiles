@@ -73,20 +73,19 @@ return {
 
 		keys = {
 			{
-				"<leader>e",
-				function()
-					Snacks.explorer()
-				end,
-				desc = "File Explorer",
-			},
-			{
-				"<leader>fe",
+				"<leader>fE",
 				function()
 					Snacks.explorer({ cwd = "/home/nephrithos/" })
 				end,
 				desc = "Explorer Snacks (root dir)",
 			},
-			{ "<leader>E", "<leader>fe", desc = "Explorer Snacks (root dir)", remap = true },
+			{
+				"<leader>fe",
+				function()
+					Snacks.explorer()
+				end,
+				desc = "Explorer Snacks (cwd)",
+			},
 			{
 				"<c-/>",
 				function()
