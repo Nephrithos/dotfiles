@@ -1,6 +1,3 @@
--- Initialize Core Settings
-require 'config.options'
-require 'config.keys'
-
--- Pluggins
-require 'config.lazy'
+require("config.lazy")
+require("config.options")
+require("config.keys")
