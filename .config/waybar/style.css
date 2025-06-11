@@ -1,0 +1,85 @@
+* {
+    all: unset;
+    border: none;
+    font-size: 1.25rem;
+    color: rgba(255, 218, 185, 1);
+    border-radius: 5rem;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0);
+}
+
+.modules-right,
+.modules-center,
+.modules-left {
+    background-color: rgba(46, 52, 64, 0.75);
+    margin: 1rem 2rem 1rem;
+}
+
+tooltip {
+    padding: 1rem;
+    background-color: rgba(46, 52, 64, 0.75);
+}
+
+#workspaces button {
+    padding: .25rem 1rem .25rem;
+    background-color: transparent;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    background-color: rgba(67, 76, 94, 1);
+}
+
+#workspaces button.active {
+    background-color: rgba(76, 86, 106, 1);
+}
+
+#window,
+#cpu,
+#memory,
+#network,
+#bluetooth,
+#wireplumber,
+#battery,
+#tray,
+#clock {
+    padding: .25rem 1rem .25rem;
+}
+
+#battery.charging {
+    color: rgba(40, 167, 69, 1);
+}
+
+#battery.warning:not(.charging) {
+    color: rgba(255, 193, 7, 1);
+}
+
+#battery.critical:not(.charging) {
+    color: rgba(220, 53, 69, 1);
+}
+
+#custom-power-wrap {
+    box-shadow: none;
+    background: #202131;
+    text-shadow: none;
+    padding: 0px;
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 6px;
+    margin-left: 6px;
+    padding-right: 4px;
+    padding-left: 4px;
+    color: #98C379;
+}
+
+#custom-power {
+    padding: 1rem;
+}
+
+/* #group-power>* { */
+/*     margin: 2px 2px 2px 5px; */
+/*     padding: 5px; */
+/* } */
